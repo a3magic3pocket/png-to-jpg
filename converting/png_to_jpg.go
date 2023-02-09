@@ -57,10 +57,9 @@ func PngToJpg(sourceDirPath string, resultDirPath string) {
 
 	fmt.Println("png files: ", pngPaths)
 
+	maxWidth := 800
+	jpegQuality := 70
 	for _, pngPath := range pngPaths {
-		maxWidth := 800
-		jpegQuality := 70
-
 		_, others := utils.GetExtenstion(pngPath)
 
 		// Create new File
