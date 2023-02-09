@@ -9,6 +9,7 @@ import (
 	"log"
 	"os"
 	"png_to_jpg/utils"
+	"regexp"
 	"strings"
 
 	"github.com/disintegration/imaging"
@@ -35,11 +36,20 @@ func getPngPaths(path string) []string {
 }
 
 func getNewFilePath(sourceDirPath string, resultDirPath string, path string) string {
-	return strings.Replace(path, sourceDirPath, resultDirPath, 1)
+	replaced := strings.Replace(path, sourceDirPath, resultDirPath, 1)
+	re := regexp.MustCompile(`\/{2,}`)
+	removed := re.ReplaceAllString(replaced, "/")
+
+	return removed
 }
 
 func PngToJpg(sourceDirPath string, resultDirPath string) {
 	pngPaths := getPngPaths(sourceDirPath)
+
+	// Init resultDir
+	if resultDirPath[len(resultDirPath):] != "/" {
+		resultDirPath = fmt.Sprintf("%s/", resultDirPath)
+	}
 	err := os.MkdirAll(resultDirPath, os.ModePerm)
 	if err != nil {
 		log.Fatalf("failed to create resultDirPath: %v", err)
