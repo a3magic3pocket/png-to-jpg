@@ -16,17 +16,17 @@ import (
 
 func getPngPaths(path string) []string {
 	result := []string{}
-	allowedExtension := "png"
+	allowedExtensions := []string{"png", "jpg", "jpeg"}
 	isDir, err := utils.CheckIsDir(path)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	if isDir {
-		utils.AppendPathsFromDir(&result, path, allowedExtension)
+		utils.AppendPathsFromDir(&result, path, allowedExtensions)
 	} else {
 		extension, _ := utils.GetExtenstion(path)
-		if extension == allowedExtension {
+		if utils.CheckInStringArray(extension, &allowedExtensions) {
 			result = append(result, path)
 		}
 	}

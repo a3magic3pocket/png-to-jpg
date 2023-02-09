@@ -1,5 +1,6 @@
 # png-to-jpg
-Convert png file to jpg
+Convert png file to jpg.
+if jpg exists, jpg will be smaller.
 
 ## How to run
 - ```bash

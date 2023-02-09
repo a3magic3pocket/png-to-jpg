@@ -62,7 +62,7 @@ func TestGetExtenstion(t *testing.T) {
 }
 func TestAppendPathsFromDir(t *testing.T) {
 	result := []string{}
-	AppendPathsFromDir(&result, ".", "go")
+	AppendPathsFromDir(&result, ".", []string{"go"})
 
 	isSuccessful := false
 

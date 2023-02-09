@@ -36,7 +36,7 @@ func GetExtenstion(path string) (string, string) {
 	return strings.ToLower(extenstion), others
 }
 
-func AppendPathsFromDir(result *[]string, path string, allowedExtension string) {
+func AppendPathsFromDir(result *[]string, path string, allowedExtensions []string) {
 	isDir, err := CheckIsDir(path)
 	if err != nil {
 		log.Fatal(err)
@@ -54,7 +54,8 @@ func AppendPathsFromDir(result *[]string, path string, allowedExtension string) 
 	parentDirPath := RemoveLastSlice(path)
 	for _, file := range files {
 		extension, _ := GetExtenstion(file.Name())
-		if extension == allowedExtension {
+
+		if CheckInStringArray(extension, &allowedExtensions) {
 			*result = append(*result, fmt.Sprintf("%s/%s", parentDirPath, file.Name()))
 		}
 	}

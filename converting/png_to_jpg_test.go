@@ -19,7 +19,7 @@ func TestPngToJpg(t *testing.T) {
 	PngToJpg(sourceDirPath, resultDirPath)
 
 	result := []string{}
-	utils.AppendPathsFromDir(&result, resultDirPath, "jpg")
+	utils.AppendPathsFromDir(&result, resultDirPath, []string{"jpg"})
 	for _, resultPath := range result {
 		if _, err := os.Stat(resultPath); errors.Is(err, os.ErrNotExist) {
 			log.Fatalf("failed to find result path: %v", os.ErrNotExist)
