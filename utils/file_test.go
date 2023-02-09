@@ -22,20 +22,20 @@ func TestCheckIsDir(t *testing.T) {
 		t.Fatal("dir exists but return value is false")
 	}
 }
-func TestRemoveLastSlice(t *testing.T) {
-	result := RemoveLastSlice("/test/")
+func TestRemoveLastSlash(t *testing.T) {
+	result := RemoveLastSlash("/test/")
 	if result != "/test" {
-		t.Fatal("can not remove last slice from input string")
+		t.Fatal("can not remove last slash from input string")
 	}
 
-	result = RemoveLastSlice("/test///")
+	result = RemoveLastSlash("/test///")
 	if result != "/test" {
-		t.Fatal("failed to remove multiple slices at end of string")
+		t.Fatal("failed to remove multiple slashes at end of string")
 	}
 
-	result = RemoveLastSlice("/test2//test///")
+	result = RemoveLastSlash("/test2//test///")
 	if result != "/test2/test" {
-		t.Fatal("failed to remove multiple slices at string")
+		t.Fatal("failed to remove multiple slashs at string")
 	}
 
 }

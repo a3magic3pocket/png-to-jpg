@@ -17,7 +17,7 @@ func CheckIsDir(path string) (bool, error) {
 	return fileInfo.IsDir(), err
 }
 
-func RemoveLastSlice(path string) string {
+func RemoveLastSlash(path string) string {
 	re := regexp.MustCompile(`\/{2,}`)
 	removed := re.ReplaceAllString(path, "/")
 
@@ -51,7 +51,7 @@ func AppendPathsFromDir(result *[]string, path string, allowedExtensions []strin
 		log.Fatal(err)
 	}
 
-	parentDirPath := RemoveLastSlice(path)
+	parentDirPath := RemoveLastSlash(path)
 	for _, file := range files {
 		extension, _ := GetExtenstion(file.Name())
 
